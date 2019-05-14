@@ -2,8 +2,16 @@
   "name": "angel.service.ethereum",
   "version": "0.1.0",
   "//": [
-    "https://truffleframework.com/docs/truffle/getting-started/installation",
-    "https://truffleframework.com/docs/truffle/getting-started/package-management-via-ethpm"
+    {
+      "babel-plugin-syntax-async-functions": "^6.1.4",
+      "babel-plugin-transform-regenerator": "^6.1.4",
+      "babel-preset-env": "^1.1.8",
+      "babel-register": "^6.23.0",
+      "grunt": "~1.0.1",
+      "grunt-contrib-jshint": "^1.1.0",
+      "grunt-contrib-nodeunit": "^1.0.0",
+      "grunt-contrib-uglify": "^3.3.0"
+    }
   ],
   "engines": {
     "node": ">=8.9.4"
@@ -14,14 +22,6 @@
     "web3": "^1.0.0-beta"
   },
   "devDependencies": {
-    "babel-plugin-syntax-async-functions": "^6.1.4",
-    "babel-plugin-transform-regenerator": "^6.1.4",
-    "babel-preset-env": "^1.1.8",
-    "babel-register": "^6.23.0",
-    "grunt": "~1.0.1",
-    "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-nodeunit": "^1.0.0",
-    "grunt-contrib-uglify": "^3.3.0",
     "truffle-hdwallet-provider": "1.0.8"
   },
   "scripts": {
