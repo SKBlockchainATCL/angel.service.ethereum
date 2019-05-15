@@ -31,7 +31,7 @@ module.exports = {
       from : '0xc5776c5d4ba76dd38424a160927c6b7054b55edd',
       gas : 6000000, // Gas limit used for deploys.
   	  gasPrice : 10000000000 // Gas price used for deploys
-    },
+    }
   },
 
   ropsten : {

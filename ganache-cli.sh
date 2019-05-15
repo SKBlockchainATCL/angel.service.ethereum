@@ -32,9 +32,23 @@ fi
 if [ ! -d "${data_dir}" ]; then
   echo "Created data direcotry onto '${data_dir}'"
   mkdir -p "${data_dir}"
-fi  
+fi
 
 cd "${script_dir}"
+
+readonly eth_ver=`cat ganache-cli.properties | grep -E "^ethereum\.netVersion=" | sed -E 's/ethereum\.netVersion=//'`
+readonly eth_host=`cat ganache-cli.properties | grep -E "^ethereum\.host=" | sed -E 's/ethereum\.host=//'`
+readonly eth_port=`cat ganache-cli.properties | grep -E "^ethereum\.port=" | sed -E 's/ethereum\.port=//'`
+readonly eth_mnemonic=`cat ganache-cli.properties | grep -E "^ethereum\.mnemonic=" | sed -E 's/ethereum\.mnemonic=//'`
+readonly eth_gas_price=`cat ganache-cli.properties | grep -E "^ethereum\.gasPrice=" | sed -E 's/ethereum\.gasPrice=//'`
+readonly eth_gas_limit=`cat ganache-cli.properties | grep -E "^ethereum\.gasLimit=" | sed -E 's/ethereum\.gasLimit=//'`
+
+# echo $eth_ver;
+# echo $eth_host;
+# echo $eth_port;
+# echo $eth_mnemonic;
+# echo $eth_gas_price;
+# echo $eth_gas_limit;
 
 # Ganache CLI : https://github.com/trufflesuite/ganache-cli#using-ganache-cli
 # BIP 32 : https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki
@@ -51,11 +65,12 @@ cd "${script_dir}"
 # Options
 #   - gasLimit : The block gas limit (defaults to 0x6691b7)
 #   - gasPrice: The price of gas in wei (defaults to 20000000000)
-ganache-cli --networkId 37 \
-            --port 8070 \
-            --gasPrice 20000000000 \
-            --gasLimit 7000000 \
-            --mnemonic "in rock machine head the dark side of the moon third stage" \
+ganache-cli --networkId $eth_ver \
+            --host "$eth_host" \
+            --port $eth_port \
+            --gasPrice $eth_gas_price \
+            --gasLimit $eth_gas_limit \
+            --mnemonic "$eth_mnemonic" \
             --accounts 3 \
             --secure --unlock 0 --unlock 1 --unlock 2 \
             --defaultBalanceEther 1000000 \

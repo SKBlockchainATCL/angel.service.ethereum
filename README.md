@@ -222,6 +222,14 @@ angel.service.ethereum$ find $APPDATA/npm/node_modules/ -name ".git" -type d | x
     * The free to use, open source YAKINDU Solidity Tools provides an integrated development environment for ethereum / solidity based smart contracts.
     * Open source(EPL) Eclipse plugin
 
+### Notes
+
+#### Solidity
+
+* `mapping` doesn't support iteration.
+* Public function can not return `struct` type.
+
+
 ### TODO
 
 * (DONE) ~~Don't remove the previous data of Ganache CLI whenever it starts up. (`ganache-cli.sh`)~~
