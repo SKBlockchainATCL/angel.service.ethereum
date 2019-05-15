@@ -1,0 +1,228 @@
+### Prerequisites
+
+| Software | Min Version | Recommanded Version | Remarks |
+| -------- | ----------- | ------------------- | ------- |
+| Node.js  | 8.9.4       | 10.x ([Download Node.js LTS](https://nodejs.org/en/download/)) |   |
+
+
+### Version Compatibilities
+
+| Software | Version | Release Notes | Remarks |
+| -------- | ------- | ------------- | ------- |
+| web3.js  | 1.0.0-beta | https://github.com/ethereum/web3.js/releases/tag/v1.0.0-beta.52 |   |
+| solc-js  | 0.5.4 | https://github.com/ethereum/solc-js/releases/tag/v0.5.4
+| Truffle  | 5.0.14  | https://github.com/trufflesuite/truffle/releases/tag/v5.0.14 | Ganache Core 2.5.5  |
+| Ganache CLI | 6.4.3 | https://github.com/trufflesuite/ganache-cli/releases/tag/v6.4.3 | Ganache Core 2.5.5 |
+| Ganache Core | 2.5.5 | https://github.com/trufflesuite/ganache-core/releases/tag/v2.5.5 | 
+
+### Source Project Layout
+
+| Directory/File | Description | Remarks |
+| -------------- | ----------- | ------- |
+| `truffle-config.js` | Truffle's configuration |   |
+| `contracts/`   | Contains sources codes of smart contracts |   |
+| `migration`    | Contains Truffle migration scripts |   |
+| `build/contracts` | Contains compiled metadata (in Json format) of smart contracts |   |
+| `ganache-cli.sh` |   |   |
+| `ganache-cli.properties` |   |   |
+| `run/ganachecli/data` | Contains data and ledger files of local standalone Ganache CLI instance |   |
+
+### Using Ganache CLI for Local Lightweight Standalone Ethereum Client
+
+#### Starting local Ganache CLI instance
+
+The script expects Bash shell environment. 
+If you are using Mac, there would be no problem.
+If you are using Windows, try to use Git Bash.
+
+~~~~bash
+angel.service.ethereum$ # If you don't initialize the project using npm, run 'npm install' at the base directory of the project.
+angel.service.ethereum$ npm install
+
+angel.service.ethereum$ # At the base directory of the project
+angel.service.ethereum$ ./ganache-cli.sh
+~~~~
+
+The above script will show the following message and create `run/ganachecli/data` 
+directory under the base directory of the project.
+
+The loaded Ganache CLI instance is local and standalone Ethereum client using local TCP port specified at `ganache-cli.properties`.
+
+The three generated private keys and accounts are always same with the below, 'cause
+the script makes use of static mnemonic to start the Ganache CLI.
+For more, refert the contents of the `ganache-cli.sh`.
+
+To stop the Ganache CLI instance, press 'CTRL+C' at the prompt.
+
+~~~~
+angel.service.ethereum$ ./ganache-cli.sh
+Ganache CLI v6.4.3 (ganache-core: 2.5.5)
+
+Available Accounts
+==================
+(0) 0xc5776c5d4ba76dd38424a160927c6b7054b55edd (~1000000 ETH)
+(1) 0x99322780c19b664e9902ff1031549da575de8f3b (~1000000 ETH)
+(2) 0xf0f0717db9387ea3b095de1ff43786c63dc93e45 (~1000000 ETH)
+ 
+Private Keys
+==================
+(0) 0xbbd0e1d8507416b8c64e88f63b4534969b9d88e4a79ebc67f4abff122f28cfb7
+(1) 0xf8c91da1e73f5601a25cbffdac303138ffac30eeeda2680f1853b6ce325ac01b
+(2) 0x572775a6686f4b5d3b26c46133e7419e97b88b5ba1db9e0f5d3ff9a109916a47
+
+HD Wallet
+==================
+Mnemonic:      in rock machine head the dark side of the moon third stage
+Base HD Path:  m/44'/60'/0'/0/{account_index}
+
+Gas Price
+==================
+20000000000
+
+Gas Limit
+==================
+90000
+
+Listening on 127.0.0.1:8070
+~~~~
+
+#### Exploring local Ganache CLI instance
+
+For Windows, you should use `truffle.cmd` instead of `truffle`.
+But if you use `Git Bash`, you can use `truffle` even on Windows.
+
+~~~bash
+
+angel.service.ethereum$ truffle console
+truffle(local)> web3.eth.getNodeInfo()
+'EthereumJS TestRPC/v2.5.5/ethereum-js'
+truffle(local)> web3.eth.getAccounts()
+[ '0xC5776C5d4ba76dD38424A160927c6B7054b55edD',
+  '0x99322780C19B664e9902Ff1031549da575De8F3B',
+  '0xf0f0717dB9387ea3B095dE1FF43786C63DC93e45' ]
+truffle(local)> web3.eth.getBlockNumber()
+0
+
+~~~
+
+### Compiling and Deploying Sample Contract
+
+Before using Truffle, required software packages incluing `web3.js` and `truffle` should
+be installed via `npm`.
+
+~~~bash
+angel.service.ethereum$ npm install
+~~~
+
+Smart contract sources should be located under `contracts/` directory.
+To compile smart contracts, execute `truffle compile` (for Windows `truffle.cmd compile`) at the base directory.
+
+~~~bash
+angel.service.ethereum$ truffle compile
+~~~
+
+The compiled contract artifacts would be located under `build/contracts/` directory.
+Before deploy smart contracts, start local standalone network using Ganache CLI.
+
+~~~bash
+angel.service.ethereum$ ./ganache-cli.sh
+~~~
+
+To deploy smart contracts into the local standalone network, execute `truffle migrate`
+
+~~~bash
+angel.service.ethereum$ truffle migrate
+~~~
+
+Before read MetaCoin contract, open Truffle console.
+
+~~~bash
+angel.service.ethereum$ truffle console
+~~~
+
+Call `MetaCoin.getBalance()` in the Truffle console.
+
+~~~bash
+truffle(development)> let mc = await MetaCoin.deployed()
+undefined
+truffle(development)> mc.getBalance("0xc5776c5d4ba76dd38424a160927c6b7054b55edd")
+<BN: 2710>
+truffle(development)>
+~~~
+
+#### References
+
+* [Truffle Documentation](https://truffleframework.com/docs/truffle/overview)
+* [Truffle Configuration](https://truffleframework.com/docs/truffle/reference/configuration)
+* [Truffle Commands](https://truffleframework.com/docs/truffle/reference/truffle-commands)
+* [Truffle Contract Abstractions](https://truffleframework.com/docs/truffle/reference/contract-abstractions)
+* [Ganache CLI](https://github.com/trufflesuite/ganache-cli)
+
+### Using Remix IDE
+
+@TODO
+
+### Testing Contract Using Remix and Truffle
+
+@TODO
+
+### Using OpenZeppelin
+
+@TODO
+
+### Troubleshooting
+
+#### Git Repository among Node Modules
+
+* To solve 'npm ERR! git ... Appears to be a git repo or submodule.' error when running `npm install`, execute the following command
+
+* To remove Git repository under local node modules
+
+~~~bash
+angel.service.ethereum$ find node_modules/ -name ".git" -type d | xargs rm -Rf
+~~~
+
+* To remove Git repository under global node modules for Windows, when using Git Bash.
+
+~~~bash
+angel.service.ethereum$ find $APPDATA/npm/node_modules/ -name ".git" -type d | xargs rm -Rf
+~~~
+
+### Tools and Libraries
+
+#### Solidity
+
+* [Solidity Documentation](https://solidity.readthedocs.io/en/latest/)
+
+#### web.js
+
+* [`web3.js` 1.0 API](https://web3js.readthedocs.io/en/1.0/)
+
+#### Truffle
+
+* [Truffle Documentation](https://truffleframework.com/docs/truffle/overview)
+* [Truffle Configuration](https://truffleframework.com/docs/truffle/reference/configuration)
+* [Truffle Commands](https://truffleframework.com/docs/truffle/reference/truffle-commands)
+
+#### Remix
+
+* [Remix](https://github.com/ethereum/remix-ide)
+    * a browser-based compiler and IDE that enables users to build Ethereum contracts with Solidity language and to debug transactions.
+    * can be used locally
+* [Remix Documentations](https://remix.readthedocs.io/en/latest/)
+
+#### OpenZeppelin
+
+* [OpenZeppelin Guides](https://docs.openzeppelin.org/docs/get-started.html)
+* [OpenZeppelin API](https://docs.openzeppelin.org/docs/crowdsale_crowdsale)
+
+#### Misc
+
+* [YAKINDU Solidity Tools](https://yakindu.github.io/solidity-ide/)
+    * The free to use, open source YAKINDU Solidity Tools provides an integrated development environment for ethereum / solidity based smart contracts.
+    * Open source(EPL) Eclipse plugin
+
+### TODO
+
+* (DONE) ~~Don't remove the previous data of Ganache CLI whenever it starts up. (`ganache-cli.sh`)~~
+
