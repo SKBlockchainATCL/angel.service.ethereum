@@ -1,24 +1,41 @@
 pragma solidity >=0.5.0 <0.7.0;
 
-contract ServiceProgram{
+import "./ServiceLib.sol";
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
+
+contract ServiceProgram is Ownable{
+    using ServiceLib for ServiceLib.Program;
     
+    ServiceLib.Program program;
+
+    event CoordiChanged(address indexed prevCoordi, address indexed currentCoordi);
     
-    struct Period {
-        bytes32 from;
-        bytes32 to;
+    event IntervalChanged(bytes8 from1, bytes8 to1, bytes8 from2, bytes8 to2);
+
+    
+    constructor(bytes32 title, bytes8 from, bytes8 to) public {
+        program.title = title;
+        program.coordi = msg.sender;
+        program.from = from;
+        program.to = to;
     }
     
-    struct Program {
-        bytes32 title;
-        Period p;
+    
+    function changeCoordi(address addr) public onlyOwner{
+        transferOwnership(addr);
+        emit CoordiChanged(program.coordi, addr);
+        program.coordi = addr;
+    }
+    
+    function setInterval(bytes8 from, bytes8 to) public{
+        //@TODO Need validation
+        
+        emit IntervalChanged(program.from, program.to, from, to);
+        program.from = from;
+        program.to = to;
         
     }
-
-    Program[] programs;
     
-    
-    
-    //Proram getProgram(byte32 name) public;
     
     
 
