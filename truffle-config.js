@@ -28,7 +28,7 @@ module.exports = {
       host : '127.0.0.1',
       port : 8070, 
       network_id : 37,
-      from : '0xc5776c5d4ba76dd38424a160927c6b7054b55edd',
+      from : '0xC5776C5d4ba76dD38424A160927c6B7054b55edD',
       gas : 6000000, // Gas limit used for deploys.
   	  gasPrice : 10000000000 // Gas price used for deploys
     }

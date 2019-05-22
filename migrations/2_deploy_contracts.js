@@ -16,13 +16,13 @@ module.exports = function(deployer) {
   var from1 = web3.utils.asciiToHex('20190125', 8); 
   var to1 = web3.utils.asciiToHex('20190131', 8);
   
-  deployer.deploy(ServiceProgram, title1, from1, to1, {gas : 5000000});
+  deployer.deploy(ServiceProgram, title1, '0xC5776C5d4ba76dD38424A160927c6B7054b55edD', from1, to1, {gas : 5000000});
   
   var title2 = web3.utils.asciiToHex('The 2nd Program', 32);
   var from2 = web3.utils.asciiToHex('20190223', 8);
   var to2 = web3.utils.asciiToHex('20190228', 8);
   
-  deployer.deploy(ServiceProgram, title2, from2, to2, {gas : 5000000});
+  deployer.deploy(ServiceProgram, title2, '0xC5776C5d4ba76dD38424A160927c6B7054b55edD', from2, to2, {gas : 5000000});
   
   
 };
