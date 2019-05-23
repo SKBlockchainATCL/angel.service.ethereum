@@ -2,6 +2,7 @@ pragma solidity >=0.5.0 <0.7.0;
 pragma experimental ABIEncoderV2;
 
 import "./ServiceLib.sol";
+import "./ServiceProgramImpl.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract ServiceProgram is Ownable{
@@ -11,7 +12,7 @@ contract ServiceProgram is Ownable{
     ServiceLib.Program program;
     
     mapping(address => ServiceLib.ProgramEntry) entries;
-
+    
     event CoordiChanged(address indexed prevCoordi, address indexed currentCoordi);
     
     event IntervalChanged(bytes8 from1, bytes8 to1, bytes8 from2, bytes8 to2);

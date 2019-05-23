@@ -1,4 +1,4 @@
-pragma solidity >=0.4.22 <0.7.0;
+pragma solidity >=0.5.0 <0.7.0;
 pragma experimental ABIEncoderV2;
 
 import "truffle/Assert.sol";
@@ -67,11 +67,11 @@ contract ServiceProgramTest{
         bool r2;
         
         // 1st, change coordinator from the owner
-        (r1, ) = address(this).delegatecall(abi.encodePacked(testee.changeCoordi.selector, addr1));
+        (r1, ) = address(testee).call(abi.encodeWithSelector(testee.changeCoordi.selector, addr1));
         Assert.isTrue(r1, "Function changeCoordi has failed to change coordinator, although called by onwer.");
         
         // 2nd, try to change coordinator from a non-owner - Exception expected
-        (r2, ) = address(this).delegatecall(abi.encodePacked(testee.changeCoordi.selector, addr2));
+        (r2, ) = address(testee).call(abi.encodeWithSelector(testee.changeCoordi.selector, addr2));
         Assert.isFalse(r2, "Function changeCoordi dosen't raise exception, although called by non-owner.");
     }
     
