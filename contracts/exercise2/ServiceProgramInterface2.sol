@@ -2,7 +2,7 @@ pragma solidity >=0.5.0 <0.7.0;
 
 import "./Initializable.sol";
 
-contract ServiceProgramInterface is Initializable{
+contract ServiceProgramInterface2 is Initializable{
 
     function getTitle() external returns (bytes32);
     
