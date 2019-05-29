@@ -2,6 +2,7 @@ pragma solidity >=0.5.0 <0.7.0;
 
 import "truffle/Assert.sol";
 import "../../contracts/exercise2/ServiceProgram2.sol";
+import "../../contracts/exercise2/ServiceProgramImpl2.sol";
 
 contract ServiceProgramTest2{
 
@@ -25,6 +26,24 @@ contract ServiceProgramTest2{
         Assert.equal(_from, from, "The 'getInterval' doesn't say the starting date specified when constructing.");
         Assert.equal(_to, to, "The 'getInterval' doesn't say the starting date specified when constructing.");
 
+    }
+    
+    function testReplaceImpl() public{
+        
+        bytes32 _title1 = testee.getTitle();
+        (bytes32 _from1, bytes32 _to1) = testee.getInterval();
+        
+        ServiceProgramInterface2 impl = new ServiceProgramImpl2();
+        
+        testee.replaceImpl(address(impl));
+        
+        bytes32 _title2 = testee.getTitle();
+        (bytes32 _from2, bytes32 _to2) = testee.getInterval();
+        
+        Assert.equal(_title2, _title1, "The 'title' state isn't preseved during before and after impl. replacement.");
+        Assert.equal(_from2, _from1, "The 'from' state isn't preseved during before and after impl. replacement.");
+        Assert.equal(_to2, _to1, "The 'to' doesn't isn't preseved during before and after impl. replacement.");
+        
     }
 
     

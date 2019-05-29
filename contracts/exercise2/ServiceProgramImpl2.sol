@@ -5,9 +5,11 @@ import "./ServiceProgramInterface2.sol";
 
 contract ServiceProgramImpl2 is ServiceProgramState2, ServiceProgramInterface2{
     
+    event Created(bytes32 name, bytes32 title, bytes8 from, bytes8 to);
     
     constructor() public{
         
+        emit Created('ServiceProgramImpl2', title, from, to);
         
     }
     
