@@ -3,9 +3,9 @@ pragma solidity >=0.5.0 <0.7.0;
 import "./ServiceProgramState2.sol";
 import "./ServiceProgramImpl2.sol";
 import "./ServiceProgramInterface2.sol";
-import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
-contract ServiceProgram2 is ServiceProgramState2, ServiceProgramInterface2, Ownable{
+
+contract ServiceProgram2 is ServiceProgramState2, ServiceProgramInterface2{
     
     ServiceProgramInterface2 impl;
     
@@ -33,7 +33,7 @@ contract ServiceProgram2 is ServiceProgramState2, ServiceProgramInterface2, Owna
     
     function replaceImpl(address addr) public onlyOwner{
         impl = ServiceProgramImpl2(addr);
-        
+
         emit ImplReplaced(addr, title, from, to);
     }
     
@@ -56,7 +56,7 @@ contract ServiceProgram2 is ServiceProgramState2, ServiceProgramInterface2, Owna
         
     }
 
-    function setInterval(bytes8 from, bytes8 to) public{
+    function setInterval(bytes8 from, bytes8 to) public onlyOwner{
         bool r; bytes memory d;
         (r, d) = address(impl).delegatecall(abi.encodeWithSelector(impl.setInterval.selector, from, to));
         require(r);

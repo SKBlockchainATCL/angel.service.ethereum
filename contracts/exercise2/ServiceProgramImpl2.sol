@@ -2,6 +2,7 @@ pragma solidity >=0.5.0 <0.7.0;
 
 import "./ServiceProgramState2.sol";
 import "./ServiceProgramInterface2.sol";
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract ServiceProgramImpl2 is ServiceProgramState2, ServiceProgramInterface2{
     
@@ -25,7 +26,7 @@ contract ServiceProgramImpl2 is ServiceProgramState2, ServiceProgramInterface2{
         return (from, to);
     }
     
-    function setInterval(bytes8 _from, bytes8 _to) public{
+    function setInterval(bytes8 _from, bytes8 _to) public onlyOwner{
         from = _from;
         to = _to;
     }

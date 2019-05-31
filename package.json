@@ -19,7 +19,7 @@
     "//": [
       "https://github.com/OpenZeppelin/zeppelin-solidity#getting-started"
     ],
-    "preinstall": "npm install -g truffle@5.0.14 ganache-cli@6.4.3 remix-ide@0.7.6",
+    "preinstall": "npm install -g truffle@5.0.14 ganache-cli@6.4.3 remix-ide@0.7.7",
     "postinstall": "mkdir -p node_modules/truffle/contracts; if [ -d node_modules/truffle/build ]; then cp node_modules/truffle/build/*.sol node_modules/truffle/contracts/; fi"
   }
 }

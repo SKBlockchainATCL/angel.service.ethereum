@@ -55,8 +55,8 @@ readonly eth_gas_limit=`cat ganache-cli.properties | grep -E "^ethereum\.gasLimi
 # BIP 39 : https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki
 #
 # Accounts
-#   - 0xc5776c5d4ba76dd38424a160927c6b7054b55edd
-#   - 0x99322780c19b664e9902ff1031549da575de8f3b
+#   - 0xC5776C5d4ba76dD38424A160927c6B7054b55edD
+#   - 0x99322780C19B664e9902Ff1031549da575De8F3B
 #   - 0xf0f0717db9387ea3b095de1ff43786c63dc93e45
 # Private keys
 #   - 0xbbd0e1d8507416b8c64e88f63b4534969b9d88e4a79ebc67f4abff122f28cfb7
