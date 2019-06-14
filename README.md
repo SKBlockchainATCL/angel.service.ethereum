@@ -208,7 +208,7 @@ angel.service.ethereum$ find $APPDATA/npm/node_modules/ -name ".git" -type d | x
 
 * [Remix](https://github.com/ethereum/remix-ide)
     * a browser-based compiler and IDE that enables users to build Ethereum contracts with Solidity language and to debug transactions.
-    * can be used locally
+    * can be used locally ( you should connect the remix.ethereum.org using http!, the default is https, not connecting )
 * [Remix Documentations](https://remix.readthedocs.io/en/latest/)
 
 #### OpenZeppelin
