@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "openzeppelin-solidity": "^2.2.0",
-    "truffle": "^5.0.14"
+    "truffle": "^5.0.27"
   },
   "devDependencies": {
     "truffle-hdwallet-provider": "1.0.8"
@@ -19,7 +19,7 @@
     "//": [
       "https://github.com/OpenZeppelin/zeppelin-solidity#getting-started"
     ],
-    "preinstall": "npm install -g truffle@5.0.14 ganache-cli@6.4.3 remix-ide@0.7.7",
+    "preinstall": "npm install -g truffle@5.0.27 ganache-cli@6.4.3 remix-ide@0.7.7",
     "postinstall": "mkdir -p node_modules/truffle/contracts; if [ -d node_modules/truffle/build ]; then cp node_modules/truffle/build/*.sol node_modules/truffle/contracts/; fi"
   }
 }

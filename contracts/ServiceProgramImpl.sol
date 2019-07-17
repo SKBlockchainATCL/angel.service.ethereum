@@ -1,16 +1,16 @@
 pragma solidity >=0.5.0 <0.7.0;
 
-import "./ServiceProgramState2.sol";
-import "./ServiceProgramInterface2.sol";
+import "./ServiceProgramState.sol";
+import "./ServiceProgramInterface.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
-contract ServiceProgramImpl2 is ServiceProgramState2, ServiceProgramInterface2{
+contract ServiceProgramImpl is ServiceProgramState, ServiceProgramInterface{
     
     event Created(bytes32 name, bytes32 title, bytes8 from, bytes8 to);
     
     constructor() public{
         
-        emit Created('ServiceProgramImpl2', title, from, to);
+        emit Created('ServiceProgramImpl', title, from, to);
         
     }
     

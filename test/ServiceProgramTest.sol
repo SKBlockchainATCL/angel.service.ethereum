@@ -1,19 +1,19 @@
 pragma solidity >=0.5.0 <0.7.0;
 
 import "truffle/Assert.sol";
-import "../../contracts/exercise2/ServiceProgram2.sol";
-import "../../contracts/exercise2/ServiceProgramImpl2.sol";
+import "../contracts/ServiceProgram.sol";
+import "../contracts/ServiceProgramImpl.sol";
 
-contract ServiceProgramTest2{
+contract ServiceProgramTest{
 
-    ServiceProgram2 testee;
+    ServiceProgram testee;
     bytes32 constant title = "The January Program";
     bytes8 constant from = "20190125";
     bytes8 constant to = "20190129";
     
     function beforeEach() public {
         // Creating Contracts via new - https://solidity.readthedocs.io/en/v0.5.8/control-structures.html#creating-contracts-via-new
-        testee = new ServiceProgram2(title, from, to); 
+        testee = new ServiceProgram(title, from, to); 
     } 
     
 
@@ -32,7 +32,7 @@ contract ServiceProgramTest2{
         bytes32 _title1 = testee.getTitle();
         (bytes8 _from1, bytes8 _to1) = testee.getInterval();
         
-        ServiceProgramInterface2 impl = new ServiceProgramImpl2();
+        ServiceProgramInterface impl = new ServiceProgramImpl();
         impl.transferOwnership(0x99322780C19B664e9902Ff1031549da575De8F3B); //2nd account from deterministic wallets
         
         testee.replaceImpl(address(impl));
@@ -54,7 +54,7 @@ contract ServiceProgramTest2{
         (bytes8 _from1, bytes8 _to1) = testee.getInterval();
         testee.setInterval(_from, _to);
 
-        ServiceProgramInterface2 impl = new ServiceProgramImpl2();
+        ServiceProgramInterface impl = new ServiceProgramImpl();
         impl.transferOwnership(0x99322780C19B664e9902Ff1031549da575De8F3B); //2nd account from deterministic wallets
         
         testee.replaceImpl(address(impl));
@@ -76,12 +76,12 @@ contract ServiceProgramTest2{
         bytes8 _from = "20190325";
         bytes8 _to = "20190329";
 
-        ServiceProgramInterface2 impl1 = new ServiceProgramImpl2();
+        ServiceProgramInterface impl1 = new ServiceProgramImpl();
         impl1.transferOwnership(0x99322780C19B664e9902Ff1031549da575De8F3B); //2nd account from deterministic wallets
         testee.replaceImpl(address(impl1));
         testee.setInterval(_from, _to);
         
-        ServiceProgramInterface2 impl2 = new ServiceProgramImpl2();
+        ServiceProgramInterface impl2 = new ServiceProgramImpl();
         impl2.transferOwnership(0x99322780C19B664e9902Ff1031549da575De8F3B); //2nd account from deterministic wallets
         testee.replaceImpl(address(impl2));
         
@@ -99,12 +99,12 @@ contract ServiceProgramTest2{
         bytes8 _from = "20190325";
         bytes8 _to = "20190329";
 
-        ServiceProgramInterface2 impl1 = new ServiceProgramImpl2();
+        ServiceProgramInterface impl1 = new ServiceProgramImpl();
         impl1.transferOwnership(0x99322780C19B664e9902Ff1031549da575De8F3B); //2nd account from deterministic wallets
         testee.replaceImpl(address(impl1));
         testee.setInterval(_from, _to);
         
-        ServiceProgramInterface2 impl2 = new ServiceProgramImpl2();
+        ServiceProgramInterface impl2 = new ServiceProgramImpl();
         impl2.transferOwnership(0x99322780C19B664e9902Ff1031549da575De8F3B);
         testee.replaceImpl(address(impl2));
 
@@ -117,8 +117,4 @@ contract ServiceProgramTest2{
         
     }
 
-    
-    
-    
-}    
-    
+}

@@ -1,13 +1,13 @@
 pragma solidity >=0.5.0 <0.7.0;
 
-import "./ServiceProgramState2.sol";
-import "./ServiceProgramImpl2.sol";
-import "./ServiceProgramInterface2.sol";
+import "./ServiceProgramState.sol";
+import "./ServiceProgramImpl.sol";
+import "./ServiceProgramInterface.sol";
 
 
-contract ServiceProgram2 is ServiceProgramState2, ServiceProgramInterface2{
+contract ServiceProgram is ServiceProgramState, ServiceProgramInterface{
     
-    ServiceProgramInterface2 impl;
+    ServiceProgramInterface impl;
     
     bool initialized = false;
     
@@ -16,7 +16,7 @@ contract ServiceProgram2 is ServiceProgramState2, ServiceProgramInterface2{
     event ImplReplaced(address addr, bytes32 title, bytes8 from, bytes8 to);
 
     constructor(bytes32 _title, bytes8 _from, bytes8 _to) public{
-        impl = new ServiceProgramImpl2();
+        impl = new ServiceProgramImpl();
         
         title = _title;
         from = _from;
@@ -27,12 +27,12 @@ contract ServiceProgram2 is ServiceProgramState2, ServiceProgramInterface2{
         require(r);
         initialized = true;
         
-        emit Created('ServiceProgram2', title, from, to);
+        emit Created('ServiceProgram', title, from, to);
 
     }
     
     function replaceImpl(address addr) public onlyOwner{
-        impl = ServiceProgramImpl2(addr);
+        impl = ServiceProgramImpl(addr);
 
         emit ImplReplaced(addr, title, from, to);
     }
