@@ -32,7 +32,7 @@ contract ServiceProgram is ServiceProgramState, ServiceProgramInterface{
     }
     
     function replaceImpl(address addr) public onlyOwner{
-        impl = ServiceProgramImpl(addr);
+        impl = ServiceProgramInterface(addr);
 
         emit ImplReplaced(addr, title, from, to);
     }
