@@ -2,8 +2,8 @@ pragma solidity >=0.5.0 <0.7.0;
 
 library ServiceLib{
     
-    enum ProgramStates{
-        Open, Started, Finished, Reviewed
+    enum ProgramStatus{
+        Open, Closed, Started, Ended, Reviewed, Canceled
     }
     
     struct Program{
