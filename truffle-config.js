@@ -29,8 +29,8 @@ module.exports = {
       port : 8070, 
       network_id : 37,
       from : '0xC5776C5d4ba76dD38424A160927c6B7054b55edD',
-      gas : 6000000, // Gas limit used for deploys.
-  	  gasPrice : 10000000000 // Gas price used for deploys
+      gas : 6e6, // Gas limit used for deploys - 6000000.
+  	  gasPrice : 100e9 // Gas price used for deploys - 100000000000 wei, 100 Gwei(Sharron)
     }
   },
 
