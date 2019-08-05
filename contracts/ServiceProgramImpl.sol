@@ -31,6 +31,13 @@ contract ServiceProgramImpl is ServiceProgramState, ServiceProgramInterface{
         to = _to;
     }
     
+    function getStatus() public returns (ServiceProgramState.Status status){
+        return status;
+    }
+    
+    function setStatus(ServiceProgramState.Status _status) public{
+        status = _status;
+    }
 
     
 }

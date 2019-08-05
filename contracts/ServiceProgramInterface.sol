@@ -1,6 +1,7 @@
 pragma solidity >=0.5.0 <0.7.0;
 
 import "./Initializable.sol";
+import "./ServiceProgramState.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract ServiceProgramInterface is Initializable, Ownable{
@@ -11,5 +12,8 @@ contract ServiceProgramInterface is Initializable, Ownable{
     
     function setInterval(bytes8 from, bytes8 to) external;
     
+    function getStatus() external returns (ServiceProgramState.Status status);
     
+    function setStatus(ServiceProgramState.Status status) external;
+
 }
