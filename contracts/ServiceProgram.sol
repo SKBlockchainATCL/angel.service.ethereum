@@ -62,7 +62,18 @@ contract ServiceProgram is ServiceProgramState, ServiceProgramInterface{
         require(r);
     }
     
+
+    function getStatus() public returns (ServiceProgramState.Status){
+        bool r; bytes memory d;
+        (r, d) = address(impl).delegatecall(abi.encodeWithSelector(impl.getStatus.selector));
+        require(r);
+        return abi.decode(d, (ServiceProgramState.Status));
     
+    }
     
-    
+    function setStatus(ServiceProgramState.Status status) public onlyOwner{
+        bool r; bytes memory d;
+        (r, d) = address(impl).delegatecall(abi.encodeWithSelector(impl.setStatus.selector, status));
+        require(r);
+    }
 }

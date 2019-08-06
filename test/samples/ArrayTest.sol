@@ -15,9 +15,10 @@ contract ArrayTest{
   
   // Causes compile-time error
   function testDynamicArray1() public{
-    uint[] v;
+    uint[] memory v;
     
-    v.push(1);
+    //v.length = 1;
+    //v.push(1);
     
     Assert.equal(uint(v.length), uint(1), "The length of dynamic array should be increased as pushed member.");  
   }
