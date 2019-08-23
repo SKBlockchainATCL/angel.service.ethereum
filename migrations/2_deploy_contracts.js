@@ -1,6 +1,6 @@
 const MetaCoin = artifacts.require("MetaCoin");
 const Ballot = artifacts.require("Ballot");
-const ServiceProgram = artifacts.require("ServiceProgram");
+const ServiceProgramFactory = artifacts.require("ServiceProgramFactory");
 
 module.exports = function(deployer) {
   deployer.deploy(MetaCoin);
@@ -10,5 +10,7 @@ module.exports = function(deployer) {
     web3.utils.fromAscii('Orange')];
   //deployer.deploy(Ballot, ['Apple', 'Banana', 'Orange']);
   deployer.deploy(Ballot, proposals, {gas : 5000000});
+  
+  deployer.deploy(ServiceProgramFactory);
   
 };
